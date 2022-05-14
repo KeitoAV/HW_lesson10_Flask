@@ -7,7 +7,7 @@ def get_candidates():
     # print(candidates.status_code)
     candidates_json = candidates.json()  # получаем файл json
     # print(candidates_json)
-    return list(candidates_json)
+    return candidates_json
 
 
 # print(get_candidates())
@@ -37,8 +37,6 @@ def get_img(x):
                    'Имя кандидата:' + data["name"] + '\n' + \
                    'Позиция кандидата:' + data["position"] + '\n' + \
                    'Навыки через запятую:' + data["skills"] + '\n' + '</pre>'
-    if x is not img_read:
-        img += 'Такого кандидата у нас нет.'
 
     return img
 
@@ -50,17 +48,40 @@ def get_skill(x):
     """Получаем кандидатов у которых есть 'skills'"""
     skill_read = get_candidates()
     skill = ""
-
     for data in skill_read:
         if x in data["skills"].title() or x in data["skills"].lower():
             skill += 'Имя кандидата: ' + data['name'] + '\n' + \
                      'Позиция кандидата: ' + data['position'] + '\n' + \
                      'Навыки через запятую: ' + data['skills'] + '\n' + '\n'
 
-    if x is not skill_read:
-        skill += 'Кандидаты такой специальностью не владеют.'
-
     return '<pre>' + '\n' + skill + '</pre>'
 
 
 # print(get_skill('flask'))
+
+def get_id(x):
+    id_img = get_candidates()
+    y = False
+    for dict in id_img:
+        if x == dict['id']:
+            y = True
+    return y
+
+
+# print(get_id(7))
+# print(get_id(70))
+
+
+def get_skills(x):
+    id_skill = get_candidates()
+    y = False
+    for dict in id_skill:
+        if x in dict['skills']:
+            y = True
+    return y
+
+
+# print(get_skills('flask'))
+# print(get_skills('ничего'))
+
+

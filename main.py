@@ -16,14 +16,19 @@ def main():
     @app.route("/candidates/<int:x>")
     def read_candidate(x):
         """Выводим 'img' и данные одного кандидата по id"""
-        read_link = foo.get_img(x)
-
+        if foo.get_id(x) is True:
+            read_link = foo.get_img(x)
+        else:
+            read_link = 'Такого кандидата у нас нет.'
         return read_link
 
     @app.route("/skills/<x>")
     def read_candidate_skill(x):
         """Выводим кандидатов у которых есть 'skills'"""
-        read_skill = foo.get_skill(x)
+        if foo.get_skills(x) is True:
+            read_skill = foo.get_skill(x)
+        else:
+            read_skill = 'Кандидаты такой специальностью не владеют'
 
         return read_skill
 

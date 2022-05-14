@@ -37,27 +37,30 @@ def get_img(x):
                    'Имя кандидата:' + data["name"] + '\n' + \
                    'Позиция кандидата:' + data["position"] + '\n' + \
                    'Навыки через запятую:' + data["skills"] + '\n' + '</pre>'
-        else:
-            return 'Такого кандидата у нас нет.'
+    if x is not img_read:
+        img += 'Такого кандидата у нас нет.'
 
     return img
 
 
-# print(get_img(1))
+# print(get_img(5))
+
 
 def get_skill(x):
     """Получаем кандидатов у которых есть 'skills'"""
     skill_read = get_candidates()
     skill = ""
+
     for data in skill_read:
         if x in data["skills"].title() or x in data["skills"].lower():
             skill += 'Имя кандидата: ' + data['name'] + '\n' + \
                      'Позиция кандидата: ' + data['position'] + '\n' + \
                      'Навыки через запятую: ' + data['skills'] + '\n' + '\n'
-        else:
-            return 'Кандидаты такой специальностью не владеют.'
+
+    if x is not skill_read:
+        skill += 'Кандидаты такой специальностью не владеют.'
 
     return '<pre>' + '\n' + skill + '</pre>'
 
 
-# print(get_skill('go'))
+# print(get_skill('flask'))
